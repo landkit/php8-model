@@ -296,6 +296,10 @@ class Model
     private function runQuery(bool $all = false): array|static|null
     {
         try {
+            if (!$this->statement) {
+                $this->select('*');
+            }
+
             $connect = Connect::instance($this->database);
 
             if (!$connect) {
