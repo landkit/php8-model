@@ -293,7 +293,7 @@ class Model
      * @param bool $all
      * @return array|$this|null
      */
-    public function fetch(bool $all = false): array|static|null
+    private function runQuery(bool $all = false): array|static|null
     {
         try {
             $connect = Connect::instance($this->database);
@@ -334,6 +334,22 @@ class Model
         }
 
         return null;
+    }
+
+    /**
+     * @return $this|null
+     */
+    public function fetch(): static|null
+    {
+        return $this->runQuery();
+    }
+
+    /**
+     * @return array|null
+     */
+    public function fetchAll(): array|null
+    {
+        return $this->runQuery(true);
     }
 
     /**
