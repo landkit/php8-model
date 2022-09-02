@@ -75,7 +75,7 @@ class Model
      *
      * @param string $behaviorToSave
      */
-    public function __construct(private readonly string $behaviorToSave = 'create')
+    public function __construct(private string $behaviorToSave = 'create')
     {
     }
 
@@ -418,6 +418,7 @@ class Model
                 return false;
             }
 
+            $this->behaviorToSave = 'update';
             $this->data = $this->findByPrimaryKey($primaryKeyValue)->data();
 
             return true;
