@@ -167,9 +167,9 @@ trait CrudTrait
 
     /**
      * @param array $data
-     * @return array|null
+     * @return array
      */
-    private function filter(array $data): ?array
+    private function filter(array $data): array
     {
         $filter = [];
 
