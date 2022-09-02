@@ -151,11 +151,12 @@ class Model
 
     /**
      * @param string $columns
+     * @param string|null $alias
      * @return Model
      */
-    public function select(string $columns): Model
+    public function select(string $columns, string $alias = null): Model
     {
-        $this->statement = "SELECT {$columns} FROM {$this->table}";
+        $this->statement = "SELECT {$columns} FROM {$this->table}" . ($alias ? " AS {$alias}" : '');
         return $this;
     }
 
@@ -171,7 +172,7 @@ class Model
             $this->select('*');
         }
 
-        $this->statement .= "{$type} JOIN {$table} ON {$terms}";
+        $this->statement .= " {$type} JOIN {$table} ON {$terms}";
         return $this;
     }
 
